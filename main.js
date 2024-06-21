@@ -53,10 +53,34 @@ const vCardToString = (cardInfo) => {
   return result.join("\r\n");
 };
 
+const vCardToNFC = async (cardInfo) => {
+  const writer = new NDEFReader();
+  try {
+
+    await writer.write({
+      records: [
+        {
+          recordType: "mime",
+          mediaType: "text/vcard",
+          data: new TextEncoder().encode(vCardToString(cardInfo)),
+        },
+      ],
+    });
+    alert("VCard written to NFC");
+  } catch (e) {
+    alert("Error writing to NFC: " + e.message);
+  }
+}
+
 const ta = document.querySelector("textarea");
 
-const writeVcard = (formData) => {
-  ta.value = vCardToString(formData);
+/**
+ * 
+ * @param {VCard} cardInfo 
+ */
+const writeVcard = (cardInfo) => {
+  ta.value = vCardToString(cardInfo);
+  vCardToNFC(cardInfo);
 };
 
 const main = () => {
