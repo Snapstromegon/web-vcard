@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  & .unsupported-message {
+    display: none;
+  }
+
+  &.no-web-nfc .unsupported-message {
+    display: block;
+    color: red;
+    border: .3rem solid red;
+    padding: .5rem;
+  }
+
+  & main {
+    width: 90%;
+    max-width: 30rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 3rem;
+
+    & #vcard-form {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .5rem;
+      
+      & input[type="submit"] {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+}
